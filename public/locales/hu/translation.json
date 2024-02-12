@@ -1,0 +1,15 @@
+{
+  "page": "Oldal",
+  "updated": "Módosítva",
+  "created": "Létrehozva",
+  "page-not-found-title": "Oops! Az oldal nem található",
+  "page-not-found-subtitle": "Az oldal amit keresel nem létezik, a hozzáférést megváltoztatták, elköltözött, vagy nem elérhető.",
+  "cancel": "Mégsem",
+  "upload-picture": "Kép feltöltése",
+  "previous": "Előző",
+  "next": "Következő",
+  "header-title": "React felvételi feladat: Céges projektek",
+  "landing-page-title": "Projektek",
+  "landing-page-subtitle": "projektek listája",
+  "landing-page-create-new-project-button-name": "Új project"
+}
