@@ -56,8 +56,8 @@ export function LandingPage() {
         ) : (
           getProjects.data?.map((project: ProjectEntity) => (
             <Card
-              project={project}
               key={project.id}
+              project={project}
               onClick={handleClickOnProject}
             />
           ))

@@ -1,12 +1,5 @@
-interface LinksType {
-  name: string;
-  url: string;
-}
-
-interface WorkersType {
-  name: string;
-  position: string;
-}
+import { LinksType } from "./links.entity";
+import { WorkersType } from "./workers.entity";
 
 export interface ProjectEntity {
   id: number;

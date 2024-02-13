@@ -34,8 +34,8 @@ export function CardDetailModal(props: CardDetailModalProps) {
           </label>
           <div id="workers" className="text-slate-400">
             {project.workers?.length > 0
-              ? project.workers.map((worker, index) => (
-                  <ul key={index} className="text-slate-400">
+              ? project.workers.map((worker) => (
+                  <ul key={worker.id} className="text-slate-400">
                     <li>
                       {worker.name} - {worker.position}
                     </li>
@@ -54,8 +54,8 @@ export function CardDetailModal(props: CardDetailModalProps) {
           </label>
           <div id="links" className="text-slate-400">
             {project.links?.length > 0
-              ? project.links.map((link, index) => (
-                  <ul key={index} className="text-slate-400">
+              ? project.links.map((link) => (
+                  <ul key={link.id} className="text-slate-400">
                     <li>
                       {link.name} -{" "}
                       <a href={link.url} target="_blank">

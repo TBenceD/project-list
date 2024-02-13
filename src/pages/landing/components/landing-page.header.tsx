@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
-import { SearchInput } from "../../../components/input";
+import { TextInput } from "../../../components/input";
 import { Button } from "../../../components/button";
+import { useNavigate } from "react-router-dom";
 
 type LandingPageHeaderProps = {
   searchText: string;
@@ -8,6 +9,7 @@ type LandingPageHeaderProps = {
 };
 export function LandingPageHeader(props: LandingPageHeaderProps) {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const { searchText, handleSearchTextChange } = props;
 
   return (
@@ -17,19 +19,19 @@ export function LandingPageHeader(props: LandingPageHeaderProps) {
       </h1>
       <div className="grid gap-6 grid-cols-9 items-center mt-4">
         <div className="col-span-7 md:col-span-8">
-          <SearchInput
+          <TextInput
             id="landing-page-search"
             value={searchText}
             onChange={handleSearchTextChange}
-            error={false}
             maxLength={255}
             placeholder={t("landing-page-search-placeholder")}
+            type="search"
           />
         </div>
         <div className="col-span-2 md:col-span-1">
           <Button
             name={t("landing-page-create-new-project-button-name")}
-            onClick={() => console.log("create new project")}
+            onClick={() => navigate("/new-project")}
             onHover="dark:hover:bg-slate-700"
             background="dark:bg-slate-600"
             type="button"

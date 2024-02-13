@@ -7,7 +7,7 @@ export function DefaultLayout() {
       <section className="flex-grow bg-slate-950">
         <Header />
         <div className="flex justify-center pt-24 sm:pt-40">
-          <div className="w-full max-w-6xl rounded-2xl bg-cyan-600 p-4 sm:mb-16 sm:p-8 dark:bg-slate-900">
+          <div className="w-full overflow-auto max-w-6xl rounded-2xl bg-cyan-600 p-4 sm:mb-16 sm:p-8 dark:bg-slate-900">
             <Outlet />
           </div>
         </div>
