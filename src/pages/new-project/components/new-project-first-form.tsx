@@ -2,14 +2,14 @@ import { useTranslation } from "react-i18next";
 import { TextArea, TextInput } from "../../../components/input";
 import { ChangeEvent } from "react";
 
-interface NewProjectSecondFormProps {
+type NewProjectSecondFormProps = {
   onTextChange: (event: ChangeEvent<HTMLInputElement>) => void;
   textValue: string;
   textError: string;
   textAreaChange: (event: ChangeEvent<HTMLTextAreaElement>) => void;
   textAreaValue: string;
   textAreaError: string;
-}
+};
 export function NewProjectFirstForm(props: NewProjectSecondFormProps) {
   const {
     onTextChange,

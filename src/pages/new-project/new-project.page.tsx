@@ -1,14 +1,14 @@
 import { ChangeEvent, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Form } from "../../components/form";
 import {
   NewProjectFirstForm,
+  NewProjectFooter,
   NewProjectSecondForm,
   NewProjectThirdForm,
 } from "./components";
 import { LinksType, WorkersType } from "../../entity";
-import { Button } from "../../components/button";
-import { useNavigate } from "react-router-dom";
 import { placeholderImage } from "../../common/helper";
 
 export function NewProjectPage() {
@@ -109,33 +109,11 @@ export function NewProjectPage() {
           )}
         </Form>
       </div>
-
-      <section className="flex justify-between">
-        <div className={`${step > 1 ? "" : "opacity-0 -z-10"}`}>
-          <Button
-            name={t("new-project-page-previous-button-title")}
-            onClick={() => handleManageStepper("previous")}
-            onHover="dark:hover:bg-slate-700"
-            background="dark:bg-slate-600"
-            type="button"
-            textColor="text-slate-400"
-            disabled={step === 1}
-          />
-        </div>
-
-        <Button
-          name={
-            step < 3
-              ? t("new-project-page-next-button-title")
-              : t("new-project-page-finish-button-title")
-          }
-          onClick={() => handleManageStepper("next")}
-          onHover="dark:hover:bg-slate-700"
-          background="dark:bg-slate-600"
-          type={step < 3 ? "button" : "submit"}
-          textColor="text-slate-400"
-        />
-      </section>
+      <NewProjectFooter
+        step={step}
+        handleManageStepper={handleManageStepper}
+        error={title.error !== "" || description.error !== ""}
+      />
     </div>
   );
 }

@@ -4,7 +4,7 @@ type TextAreaProps = {
   id: string;
   value: string;
   onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
-  error: string;
+  error?: string;
   placeholder?: string;
   disabled?: boolean;
   maxLength?: number;
@@ -12,8 +12,11 @@ type TextAreaProps = {
 };
 
 export function TextArea(props: TextAreaProps) {
+  const { id, value, onChange, error, placeholder, disabled, maxLength, rows } =
+    props;
+
   const [isPlaceholderUp, setIsPlaceholderUp] = useState(
-    typeof props.value === "string" && props.value.trim() !== ""
+    typeof value === "string" && value.trim() !== ""
   );
 
   const handleFocus = () => {
@@ -21,7 +24,7 @@ export function TextArea(props: TextAreaProps) {
   };
 
   const handleBlur = () => {
-    setIsPlaceholderUp(!!props.value);
+    setIsPlaceholderUp(!!value);
   };
 
   return (
@@ -37,31 +40,32 @@ export function TextArea(props: TextAreaProps) {
               bg-transparent px-2 text-slate-400
             `}
           onClick={() => {
-            document.getElementById(props.id)?.focus();
+            document.getElementById(id)?.focus();
           }}
         >
-          <span>{props.placeholder}</span>
+          <span>{placeholder}</span>
         </label>
         <textarea
-          id={props.id}
-          rows={props.rows}
-          className={`before: z-[2] w-full resize-none
-              rounded-2xl p-2 pl-6
-              pr-4 transition-all focus:outline-none focus:ring-2 focus:ring-sky-400/10
-              dark:bg-slate-600 dark:text-slate-400
-              ${props.error !== "" ? "border border-solid border-red-600" : ""}
-              disabled:cursor-not-allowed disabled:bg-slate-200
-            `}
-          readOnly={props.disabled}
-          value={props.value}
-          onChange={props.onChange}
-          maxLength={props.maxLength}
+          id={id}
+          rows={rows}
+          className={`z-[2] w-full
+          rounded-2xl p-2 pl-6 pr-4
+          resize-none
+          before:transition-all focus:outline-none focus:ring-2 focus:ring-sky-400/10
+          dark:bg-slate-600 dark:text-slate-400
+          ${error && error !== "" ? "border border-solid border-red-600" : ""}
+          disabled:cursor-not-allowed disabled:bg-slate-200
+        `}
+          readOnly={disabled}
+          value={value}
+          onChange={onChange}
+          maxLength={maxLength}
           onFocus={handleFocus}
           onBlur={handleBlur}
         />
       </div>
-      {props.error !== "" && (
-        <span className="text-red-600 pl-4">{props.error}</span>
+      {error && error !== "" && (
+        <span className="text-red-600 pl-4">{error}</span>
       )}
     </div>
   );

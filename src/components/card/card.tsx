@@ -1,9 +1,10 @@
+import { longTextWrapper, shortTextWrapper } from "../../common/helper";
 import { ProjectEntity } from "../../entity";
 
-interface CardProps {
+type CardProps = {
   project: ProjectEntity;
   onClick: (value: ProjectEntity) => void;
-}
+};
 export function Card(props: CardProps) {
   const { project, onClick } = props;
 
@@ -19,13 +20,13 @@ export function Card(props: CardProps) {
 
       <div className="p-2">
         <h1 className="text-sm sm:text-base font-bold text-gray-900 dark:text-slate-400">
-          {project.title}
+          {shortTextWrapper(project.title)}
         </h1>
         <p
           className="text-xs sm:text-sm hyphens-auto text-gray-700 dark:text-slate-400"
           lang="hu"
         >
-          {project.description}
+          {longTextWrapper(project.description)}
         </p>
       </div>
     </div>

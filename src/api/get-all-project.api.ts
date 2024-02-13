@@ -1,7 +1,7 @@
 import { ProjectEntity } from "../entity";
-interface getAllProjectsProps {
+type getAllProjectsProps = {
   searchTerm?: string;
-}
+};
 
 export const getAllProjects = async (props: getAllProjectsProps) => {
   const { searchTerm } = props;

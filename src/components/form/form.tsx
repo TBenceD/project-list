@@ -4,12 +4,13 @@ type FormProps = {
 };
 
 export function Form(props: FormProps) {
+  const { onSubmit, children } = props;
   return (
     <form
       className="flex justify-center flex-col min-w-full"
-      onSubmit={props.onSubmit}
+      onSubmit={onSubmit}
     >
-      {props.children}
+      {children}
     </form>
   );
 }

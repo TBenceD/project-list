@@ -14,7 +14,7 @@
   "card-detail-modal-no-workers-message": "Jelenleg egy dolgozó sem dolgozik a projecten.",
   "card-detail-modal-links-title": "Linkek:",
   "card-detail-modal-no-links-message": "Jelenleg egy link sem tartozik a projecthez.",
-  "landing-page-search-placeholder": "Kedj el keresni...",
+  "landing-page-search-placeholder": "Kezdj el keresni...",
   "new-project-page-title": "Új project",
   "new-project-page-next-button-title": "Következő",
   "new-project-page-previous-button-title": "Előző",
@@ -29,5 +29,7 @@
   "new-project-third-form-link-url-placeholder": "Url",
   "new-project-page-new-project-description-error": "Amennyiben ki szeretnéd tölteni, min 50 karakter hosszúnka kell lennie!",
   "field-is-mandatory-if-coworker-position-is-not-empty": "Munkatárs neve kötelező, ha van pozíciója!",
-  "field-is-mandatory-if-coworker-name-is-not-empty": "Munkatárs pozíciója kötelező, ha van neve!"
+  "field-is-mandatory-if-coworker-name-is-not-empty": "Munkatárs pozíciója kötelező, ha van neve!",
+  "field-is-mandatory-if-link-url-is-not-empty": "Link név kötelező, ha van url!",
+  "field-is-mandatory-if-url-name-is-not-empty": "Link url kötelező, ha van név!"
 }

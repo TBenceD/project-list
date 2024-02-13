@@ -1,15 +1,13 @@
 import { useEffect, useState } from "react";
 
-interface ModalProps {
+type ModalProps = {
   onClose: () => void;
   title: string;
   children: JSX.Element;
-  handleSubmit?: () => void;
-  submitText?: string;
-  cancelText?: string;
-}
+};
 
 export function Modal(props: ModalProps) {
+  const { onClose, title, children } = props;
   const [modalClose, setModalClose] = useState(false);
 
   useEffect(() => {
@@ -27,12 +25,12 @@ export function Modal(props: ModalProps) {
   const handleCloseButtonClicked = () => {
     handleClose();
     setTimeout(() => {
-      props.onClose();
+      onClose();
     }, 200);
   };
 
   return (
-    <dialog className="fixed w-full h-full inset-0 z-50 flex items-center justify-center bg-black bg-opacity-20">
+    <div className="fixed w-full h-full inset-0 z-50 flex items-center justify-center bg-black bg-opacity-20">
       <section className="relative">
         <div
           className={`min-w-[500px] sm:max-h-screen sm:h-[600px] ${
@@ -40,17 +38,17 @@ export function Modal(props: ModalProps) {
           } flex h-screen w-screen flex-col overflow-auto bg-white p-5 shadow-2xl sm:h-fit sm:w-fit sm:max-w-screen-md sm:rounded-3xl dark:bg-slate-700`}
         >
           <div className="mb-8 flex justify-between text-base font-bold subpixel-antialiased sm:text-xl dark:text-slate-400 space-x-10">
-            {props.title}
-            <span
-              className="max-h-5 sm:mr-4 cursor-pointer"
+            {title}
+            <div
+              className="max-h-5 cursor-pointer text-black"
               onClick={handleCloseButtonClicked}
             >
               &times;
-            </span>
+            </div>
           </div>
-          <div className="flex flex-grow text-left">{props.children}</div>
+          <div className="flex flex-grow text-left">{children}</div>
         </div>
       </section>
-    </dialog>
+    </div>
   );
 }

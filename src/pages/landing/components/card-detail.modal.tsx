@@ -2,10 +2,10 @@ import { useTranslation } from "react-i18next";
 import { Modal } from "../../../components/modal";
 import { ProjectEntity } from "../../../entity";
 
-interface CardDetailModalProps {
+type CardDetailModalProps = {
   handleCloseModal: () => void;
   project: ProjectEntity;
-}
+};
 export function CardDetailModal(props: CardDetailModalProps) {
   const { t } = useTranslation();
   const { handleCloseModal, project } = props;

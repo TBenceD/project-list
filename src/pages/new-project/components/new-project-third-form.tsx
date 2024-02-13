@@ -4,10 +4,10 @@ import { useTranslation } from "react-i18next";
 import { Button } from "../../../components/button";
 import { LinksType } from "../../../entity";
 
-interface NewProjectThirdFormProps {
+type NewProjectThirdFormProps = {
   links: LinksType[];
   setLinks: (value: LinksType[]) => void;
-}
+};
 
 export function NewProjectThirdForm(props: NewProjectThirdFormProps) {
   const { t } = useTranslation();
@@ -79,12 +79,18 @@ export function NewProjectThirdForm(props: NewProjectThirdFormProps) {
   const handleAddNewLink = () => {
     if (handleCheckInputs()) return;
 
+    if (newLink.name === "" && newLink.url === "") {
+      return;
+    }
+
     const addNewLink: LinksType = {
       ...newLink,
       id: new Date().getTime(),
     };
 
-    setLinks((prevLinks: LinksType[]) => [...prevLinks, addNewLink]);
+    const newLinksArray = [...links, addNewLink];
+
+    setLinks(newLinksArray);
     setNewLink({
       id: null!,
       name: "",

@@ -4,10 +4,10 @@ import { useTranslation } from "react-i18next";
 import { Button } from "../../../components/button";
 import { WorkersType } from "../../../entity";
 
-interface NewProjectSecondFormProps {
+type NewProjectSecondFormProps = {
   coWorkers: WorkersType[];
   setCoWorkers: (value: WorkersType[]) => void;
-}
+};
 
 export function NewProjectSecondForm(props: NewProjectSecondFormProps) {
   const { t } = useTranslation();
@@ -87,11 +87,9 @@ export function NewProjectSecondForm(props: NewProjectSecondFormProps) {
       ...newCoworker,
       id: new Date().getTime(),
     };
+    const newWorkersArray = [...coWorkers, newAddNewCoworker];
 
-    setCoWorkers((prevWorkers: WorkersType[]) => [
-      ...prevWorkers,
-      newAddNewCoworker,
-    ]);
+    setCoWorkers(newWorkersArray);
     setNewCoworker({
       id: null!,
       name: "",
