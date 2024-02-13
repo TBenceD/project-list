@@ -35,7 +35,7 @@ export function Modal(props: ModalProps) {
     <dialog className="fixed w-full h-full inset-0 z-50 flex items-center justify-center bg-black bg-opacity-20">
       <section className="relative">
         <div
-          className={`min-w-96 ${
+          className={`min-w-[500px] sm:max-h-screen sm:h-[600px] ${
             modalClose ? "animate-commonModalClose" : "animate-commonModalOpen"
           } flex h-screen w-screen flex-col overflow-auto bg-white p-5 shadow-2xl sm:h-fit sm:w-fit sm:max-w-screen-md sm:rounded-3xl dark:bg-slate-700`}
         >
@@ -48,9 +48,7 @@ export function Modal(props: ModalProps) {
               &times;
             </span>
           </div>
-          <div className="flex flex-grow justify-center text-left sm:items-center">
-            {props.children}
-          </div>
+          <div className="flex flex-grow text-left">{props.children}</div>
         </div>
       </section>
     </dialog>

@@ -11,5 +11,11 @@
   "header-title": "React felvételi feladat: Céges projektek",
   "landing-page-title": "Projektek",
   "landing-page-subtitle": "projektek listája",
-  "landing-page-create-new-project-button-name": "Új project"
+  "landing-page-create-new-project-button-name": "Új project",
+  "card-detail-modal-description-title": "Leírás:",
+  "card-detail-modal-workers-title": "Dolgozók:",
+  "card-detail-modal-no-workers-message": "Jelenleg egy dolgozó sem dolgozik a projecten.",
+  "card-detail-modal-links-title": "Linkek:",
+  "card-detail-modal-no-links-message": "Jelenleg egy link sem tartozik a projecthez.",
+  "landing-page-search-placeholder": "Kedj el keresni..."
 }
