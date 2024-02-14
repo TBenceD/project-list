@@ -11,7 +11,7 @@ export const getAllProjects = async (props: getAllProjectsProps) => {
   let trueData = [];
 
   if (projects) {
-    trueData = await JSON.parse(projects);
+    trueData = JSON.parse(projects);
   }
 
   if (searchTerm && searchTerm.trim() !== "") {
