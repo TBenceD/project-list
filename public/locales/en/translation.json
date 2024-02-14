@@ -1,10 +1,6 @@
 {
-  "page": "Oldal",
-  "updated": "Módosítva",
-  "created": "Létrehozva",
   "page-not-found-title": "Oops! Az oldal nem található",
   "page-not-found-subtitle": "Az oldal amit keresel nem létezik, a hozzáférést megváltoztatták, elköltözött, vagy nem elérhető.",
-  "cancel": "Mégsem",
   "header-title": "React felvételi feladat: Céges projektek",
   "landing-page-title": "Projektek",
   "landing-page-subtitle": "projektek listája",
@@ -31,5 +27,6 @@
   "field-is-mandatory-if-coworker-position-is-not-empty": "Munkatárs neve kötelező, ha van pozíciója!",
   "field-is-mandatory-if-coworker-name-is-not-empty": "Munkatárs pozíciója kötelező, ha van neve!",
   "field-is-mandatory-if-link-url-is-not-empty": "Link név kötelező, ha van url!",
-  "field-is-mandatory-if-url-name-is-not-empty": "Link url kötelező, ha van név!"
+  "field-is-mandatory-if-url-name-is-not-empty": "Link url kötelező, ha van név!",
+  "valid-link-url-required-error": "Adj meg valid link URL-t!"
 }

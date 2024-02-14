@@ -34,7 +34,7 @@ export function TextArea(props: TextAreaProps) {
           className={`
               absolute left-4 cursor-text text-base transition-all ${
                 isPlaceholderUp
-                  ? "-top-0 flex h-[1px] items-center bg-slate-600 text-sm"
+                  ? "-top-0.5 sm:top-0 flex h-[1px] items-center bg-slate-600 sm:text-sm text-xs"
                   : `top-[8px] -translate-y-[8px] transform pt-2`
               }
               bg-transparent px-2 text-slate-400
@@ -65,7 +65,7 @@ export function TextArea(props: TextAreaProps) {
         />
       </div>
       {error && error !== "" && (
-        <span className="text-red-600 pl-4">{error}</span>
+        <span className="text-red-600 pl-4 sm:text-base text-sm">{error}</span>
       )}
     </div>
   );

@@ -7,45 +7,49 @@ import { LinksType } from "../../../entity";
 type NewProjectThirdFormProps = {
   links: LinksType[];
   setLinks: (value: LinksType[]) => void;
+  handleSetLinkError: (isError: boolean) => void;
 };
 
 export function NewProjectThirdForm(props: NewProjectThirdFormProps) {
   const { t } = useTranslation();
-  const { links, setLinks } = props;
+  const { links, setLinks, handleSetLinkError } = props;
 
-  const [newLink, setNewLink] = useState<LinksType>({
-    id: null as unknown as number,
-    name: "",
-    url: "",
-  });
-
-  const [errors, setErrors] = useState({
-    nameError: "",
-    urlError: "",
+  const [newLink, setNewLink] = useState<{
+    value: LinksType;
+    error: { nameError: ""; urlError: "" };
+  }>({
+    value: { id: null!, name: "", url: "" },
+    error: { nameError: "", urlError: "" },
   });
 
   const handleSetLinkName = (event: ChangeEvent<HTMLInputElement>) => {
     setNewLink((prevNewLink) => ({
-      ...prevNewLink,
-      name: event.target.value,
+      value: {
+        id: null!,
+        name: event.target.value,
+        url: prevNewLink.value.url,
+      },
+      error: {
+        nameError: "",
+        urlError: "",
+      },
     }));
-
-    setErrors((prevErrors) => ({
-      ...prevErrors,
-      nameError: "",
-    }));
+    handleSetLinkError(false);
   };
 
   const handleSetUrl = (event: ChangeEvent<HTMLInputElement>) => {
     setNewLink((prevNewLink) => ({
-      ...prevNewLink,
-      url: event.target.value,
+      value: {
+        id: null!,
+        name: prevNewLink.value.name,
+        url: event.target.value,
+      },
+      error: {
+        nameError: "",
+        urlError: "",
+      },
     }));
-
-    setErrors((prevErrors) => ({
-      ...prevErrors,
-      urlError: "",
-    }));
+    handleSetLinkError(false);
   };
 
   const handleRemoveLink = (id: number) => {
@@ -55,23 +59,45 @@ export function NewProjectThirdForm(props: NewProjectThirdFormProps) {
 
   const handleCheckInputs = () => {
     if (
-      newLink.url !== "" &&
-      (newLink.name === "" || newLink.name.trim() === "")
+      newLink.value.url !== "" &&
+      (newLink.value.name === "" || newLink.value.name.trim() === "")
     ) {
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        nameError: t("field-is-mandatory-if-link-url-is-not-empty"),
+      setNewLink((prevNewLink) => ({
+        ...prevNewLink,
+        error: {
+          nameError: t("field-is-mandatory-if-link-url-is-not-empty"),
+          urlError: prevNewLink.error.urlError,
+        },
       }));
+      handleSetLinkError(true);
+
       return true;
     }
     if (
-      newLink.name !== "" &&
-      (newLink.url === "" || newLink.url.trim() === "")
+      newLink.value.name !== "" &&
+      (newLink.value.url === "" || newLink.value.url.trim() === "")
     ) {
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        urlError: t("field-is-mandatory-if-url-name-is-not-empty"),
+      setNewLink((prevNewLink) => ({
+        ...prevNewLink,
+        error: {
+          nameError: prevNewLink.error.nameError,
+          urlError: t("field-is-mandatory-if-url-name-is-not-empty"),
+        },
       }));
+
+      return true;
+    }
+    const regex =
+      /^(http(s):\/\/.)[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)$/g;
+    if (!regex.test(newLink.value.url)) {
+      setNewLink((prevNewLink) => ({
+        ...prevNewLink,
+        error: {
+          nameError: prevNewLink.error.nameError,
+          urlError: t("valid-link-url-required-error"),
+        },
+      }));
+
       return true;
     }
   };
@@ -79,12 +105,12 @@ export function NewProjectThirdForm(props: NewProjectThirdFormProps) {
   const handleAddNewLink = () => {
     if (handleCheckInputs()) return;
 
-    if (newLink.name === "" && newLink.url === "") {
+    if (newLink.value.name === "" && newLink.value.url === "") {
       return;
     }
 
     const addNewLink: LinksType = {
-      ...newLink,
+      ...newLink.value,
       id: new Date().getTime(),
     };
 
@@ -92,9 +118,8 @@ export function NewProjectThirdForm(props: NewProjectThirdFormProps) {
 
     setLinks(newLinksArray);
     setNewLink({
-      id: null!,
-      name: "",
-      url: "",
+      value: { id: null!, name: "", url: "" },
+      error: { nameError: "", urlError: "" },
     });
   };
 
@@ -103,22 +128,22 @@ export function NewProjectThirdForm(props: NewProjectThirdFormProps) {
       <div className="grid sm:grid-cols-12 gap-4">
         <div className="sm:col-span-5">
           <TextInput
-            value={newLink.name}
+            value={newLink.value.name}
             placeholder={t("new-project-third-form-link-name-placeholder")}
             id="third-form-link-name"
             onChange={handleSetLinkName}
-            error={errors.nameError}
+            error={newLink.error.nameError}
             maxLength={255}
             type="text"
           />
         </div>
         <div className="sm:col-span-5">
           <TextInput
-            value={newLink.url}
+            value={newLink.value.url}
             placeholder={t("new-project-third-form-link-url-placeholder")}
             id="third-form-link-url"
             onChange={handleSetUrl}
-            error={errors.urlError}
+            error={newLink.error.urlError}
             maxLength={255}
             type="text"
           />

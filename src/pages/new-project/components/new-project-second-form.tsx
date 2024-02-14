@@ -7,43 +7,49 @@ import { WorkersType } from "../../../entity";
 type NewProjectSecondFormProps = {
   coWorkers: WorkersType[];
   setCoWorkers: (value: WorkersType[]) => void;
+  handleSetWorkerError: (isError: boolean) => void;
 };
 
 export function NewProjectSecondForm(props: NewProjectSecondFormProps) {
   const { t } = useTranslation();
-  const { coWorkers, setCoWorkers } = props;
+  const { coWorkers, setCoWorkers, handleSetWorkerError } = props;
 
-  const [newCoworker, setNewCoworker] = useState<WorkersType>({
-    id: null as unknown as number,
-    name: "",
-    position: "",
-  });
-
-  const [errors, setErrors] = useState({
-    nameError: "",
-    positionError: "",
+  const [newCoworker, setNewCoworker] = useState<{
+    value: WorkersType;
+    error: { nameError: string; positionError: string };
+  }>({
+    value: { id: null!, name: "", position: "" },
+    error: { nameError: "", positionError: "" },
   });
 
   const handleSetCoworkerName = (event: ChangeEvent<HTMLInputElement>) => {
     setNewCoworker((prevNewCoworker) => ({
-      ...prevNewCoworker,
-      name: event.target.value,
+      value: {
+        id: null!,
+        name: event.target.value,
+        position: prevNewCoworker.value.position,
+      },
+      error: {
+        nameError: "",
+        positionError: "",
+      },
     }));
-    setErrors((prevErrors) => ({
-      ...prevErrors,
-      nameError: "",
-    }));
+    handleSetWorkerError(false);
   };
 
   const handleSetCoworkerPosition = (event: ChangeEvent<HTMLInputElement>) => {
     setNewCoworker((prevNewCoworker) => ({
-      ...prevNewCoworker,
-      position: event.target.value,
+      value: {
+        id: null!,
+        name: prevNewCoworker.value.name,
+        position: event.target.value,
+      },
+      error: {
+        nameError: "",
+        positionError: "",
+      },
     }));
-    setErrors((prevErrors) => ({
-      ...prevErrors,
-      positionError: "",
-    }));
+    handleSetWorkerError(false);
   };
 
   const handleRemoveCoworker = (id: number) => {
@@ -55,23 +61,34 @@ export function NewProjectSecondForm(props: NewProjectSecondFormProps) {
 
   const handleCheckInputs = () => {
     if (
-      newCoworker.position !== "" &&
-      (newCoworker.name === "" || newCoworker.name.trim() === "")
+      newCoworker?.value.position !== "" &&
+      (newCoworker?.value.name === "" || newCoworker?.value.name.trim() === "")
     ) {
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        nameError: t("field-is-mandatory-if-coworker-position-is-not-empty"),
+      setNewCoworker((prevNewCoworker) => ({
+        ...prevNewCoworker,
+        error: {
+          nameError: t("field-is-mandatory-if-coworker-position-is-not-empty"),
+          positionError: prevNewCoworker.error.positionError,
+        },
       }));
+      handleSetWorkerError(true);
+
       return true;
     }
     if (
-      newCoworker.name !== "" &&
-      (newCoworker.position === "" || newCoworker.position.trim() === "")
+      newCoworker?.value.name !== "" &&
+      (newCoworker?.value.position === "" ||
+        newCoworker?.value.position.trim() === "")
     ) {
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        positionError: t("field-is-mandatory-if-coworker-name-is-not-empty"),
+      setNewCoworker((prevNewCoworker) => ({
+        ...prevNewCoworker,
+        error: {
+          nameError: prevNewCoworker.error.nameError,
+          positionError: t("field-is-mandatory-if-coworker-name-is-not-empty"),
+        },
       }));
+      handleSetWorkerError(true);
+
       return true;
     }
   };
@@ -79,22 +96,28 @@ export function NewProjectSecondForm(props: NewProjectSecondFormProps) {
   const handleAddNewCoworker = () => {
     if (handleCheckInputs()) return;
 
-    if (newCoworker.name === "" && newCoworker.position === "") {
+    if (newCoworker?.value.name === "" && newCoworker?.value.position === "") {
       return;
     }
 
     const newAddNewCoworker: WorkersType = {
-      ...newCoworker,
+      ...newCoworker.value,
       id: new Date().getTime(),
     };
     const newWorkersArray = [...coWorkers, newAddNewCoworker];
 
     setCoWorkers(newWorkersArray);
-    setNewCoworker({
-      id: null!,
-      name: "",
-      position: "",
-    });
+    setNewCoworker(() => ({
+      value: {
+        id: null!,
+        name: "",
+        position: "",
+      },
+      error: {
+        nameError: "",
+        positionError: "",
+      },
+    }));
   };
 
   return (
@@ -102,24 +125,24 @@ export function NewProjectSecondForm(props: NewProjectSecondFormProps) {
       <div className="grid sm:grid-cols-12 gap-4">
         <div className="sm:col-span-5">
           <TextInput
-            value={newCoworker.name}
+            value={newCoworker.value.name}
             placeholder={t("new-project-second-form-coworker-name-placeholder")}
             id="second-form-coworker-name"
             onChange={handleSetCoworkerName}
-            error={errors.nameError}
+            error={newCoworker?.error.nameError}
             maxLength={255}
             type="text"
           />
         </div>
         <div className="sm:col-span-5">
           <TextInput
-            value={newCoworker.position}
+            value={newCoworker.value.position}
             placeholder={t(
               "new-project-second-form-coworker-position-placeholder"
             )}
             id="second-form-coworker-position"
             onChange={handleSetCoworkerPosition}
-            error={errors.positionError}
+            error={newCoworker.error.positionError}
             maxLength={255}
             type="text"
           />

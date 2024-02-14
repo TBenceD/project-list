@@ -18,8 +18,53 @@ export function NewProjectPage() {
   const [step, setStep] = useState(1);
   const [title, setTitle] = useState({ value: "", error: "" });
   const [description, setDescription] = useState({ value: "", error: "" });
-  const [workers, setWorkers] = useState<WorkersType[]>([]);
-  const [links, setLinks] = useState<LinksType[]>([]);
+  const [workers, setWorkers] = useState<{
+    value: WorkersType[];
+    error: boolean;
+  }>({ value: [], error: false });
+  const [links, setLinks] = useState<{ value: LinksType[]; error: boolean }>({
+    value: [],
+    error: false,
+  });
+
+  const handleTitleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setTitle(() => ({ value: event.target.value, error: "" }));
+  };
+
+  const handleDescriptionChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
+    setDescription(() => ({
+      value: event.target.value,
+      error: "",
+    }));
+  };
+
+  const handleAddNewCoworker = (workers: WorkersType[]) => {
+    setWorkers(() => ({
+      value: [...workers],
+      error: false,
+    }));
+  };
+
+  const handleSetWorkerError = (isError: boolean) => {
+    setWorkers((prevWorkers) => ({
+      value: [...prevWorkers.value],
+      error: isError,
+    }));
+  };
+
+  const handleSetLinkError = (isError: boolean) => {
+    setLinks((prevWorkers) => ({
+      value: [...prevWorkers.value],
+      error: isError,
+    }));
+  };
+
+  const handleAddNewLink = (links: LinksType[]) => {
+    setLinks(() => ({
+      value: [...links],
+      error: false,
+    }));
+  };
 
   const handleCheckInputs = () => {
     if (step === 1) {
@@ -46,8 +91,8 @@ export function NewProjectPage() {
       id: new Date().getTime(),
       title: title.value,
       description: description.value,
-      workers: workers,
-      links: links,
+      workers: workers.value,
+      links: links.value,
       image: placeholderImage(title.value),
     };
     const prevItems = localStorage.getItem("projects");
@@ -73,17 +118,6 @@ export function NewProjectPage() {
     setStep((step) => step - 1);
   };
 
-  const handleTitleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setTitle(() => ({ value: event.target.value, error: "" }));
-  };
-
-  const handleDescriptionChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    setDescription(() => ({
-      value: event.target.value,
-      error: "",
-    }));
-  };
-
   return (
     <div className="space-y-4">
       <NewProjectHeader />
@@ -100,18 +134,28 @@ export function NewProjectPage() {
             />
           ) : step === 2 ? (
             <NewProjectSecondForm
-              coWorkers={workers}
-              setCoWorkers={setWorkers}
+              coWorkers={workers.value}
+              setCoWorkers={handleAddNewCoworker}
+              handleSetWorkerError={handleSetWorkerError}
             />
           ) : (
-            <NewProjectThirdForm links={links} setLinks={setLinks} />
+            <NewProjectThirdForm
+              links={links.value}
+              setLinks={handleAddNewLink}
+              handleSetLinkError={handleSetLinkError}
+            />
           )}
         </Form>
       </div>
       <NewProjectFooter
         step={step}
         handleManageStepper={handleManageStepper}
-        error={title.error !== "" || description.error !== ""}
+        error={
+          title.error !== "" ||
+          description.error !== "" ||
+          workers.error ||
+          links.error
+        }
       />
     </div>
   );

@@ -33,7 +33,7 @@ export function TextInput(props: InputProps) {
           className={`
           absolute left-4 cursor-text text-base transition-all ${
             isPlaceholderUp
-              ? "top-0 flex h-[1px] items-center bg-slate-600 text-sm"
+              ? "-top-0.5 sm:top-0 flex h-[1px] items-center bg-slate-600 text-xs sm:text-sm"
               : "top-1/2 -translate-y-1/2 transform"
           }
           bg-transparent px-2 text-slate-400
@@ -63,7 +63,7 @@ export function TextInput(props: InputProps) {
         />
       </div>
       {error && error !== "" && (
-        <span className="text-red-600 pl-4">{error}</span>
+        <span className="text-red-600 pl-4 sm:text-base text-sm">{error}</span>
       )}
     </div>
   );
