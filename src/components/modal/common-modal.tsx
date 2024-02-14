@@ -30,10 +30,10 @@ export function Modal(props: ModalProps) {
   };
 
   return (
-    <div className="fixed w-full h-full inset-0 z-50 flex items-center justify-center bg-black bg-opacity-20">
+    <div className="fixed sm:w-full sm:h-full inset-0 z-50 flex items-center justify-center bg-black bg-opacity-20">
       <section className="relative">
         <div
-          className={`min-w-[500px] sm:max-h-screen sm:h-[600px] ${
+          className={`sm:min-w-[500px] sm:max-h-screen sm:h-[600px] ${
             modalClose ? "animate-commonModalClose" : "animate-commonModalOpen"
           } flex h-screen w-screen flex-col overflow-auto p-5 shadow-[0_4px_16px_-4px_rgba(59,113,202,0.5)] sm:h-fit sm:w-fit sm:max-w-screen-md sm:rounded-3xl bg-slate-700`}
         >
