@@ -30,7 +30,7 @@ export function Modal(props: ModalProps) {
   };
 
   return (
-    <div className="fixed sm:w-full sm:h-full inset-0 z-50 flex items-center justify-center bg-black bg-opacity-20">
+    <div className="fixed w-full h-full inset-0 z-50 flex items-center justify-center bg-black bg-opacity-20">
       <section className="relative">
         <div
           className={`sm:min-w-[500px] sm:max-h-screen sm:h-[600px] ${
