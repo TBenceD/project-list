@@ -84,6 +84,7 @@ export function NewProjectThirdForm(props: NewProjectThirdFormProps) {
           urlError: t("field-is-mandatory-if-url-name-is-not-empty"),
         },
       }));
+      handleSetLinkError(true);
 
       return true;
     }
@@ -97,6 +98,7 @@ export function NewProjectThirdForm(props: NewProjectThirdFormProps) {
           urlError: t("valid-link-url-required-error"),
         },
       }));
+      handleSetLinkError(true);
 
       return true;
     }

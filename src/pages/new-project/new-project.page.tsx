@@ -118,6 +118,8 @@ export function NewProjectPage() {
     setStep((step) => step - 1);
   };
 
+  console.log(links.error);
+
   return (
     <div className="space-y-4">
       <NewProjectHeader />
