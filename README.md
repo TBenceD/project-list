@@ -1,30 +1,41 @@
+# Documentation 👩‍💻 👨‍💻
+
 # React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A dokumentum célja, hogy ismertesse a felvételihez szükséges React projectet.
+Ez a project 2024. 02. 14-én került kész állapotba,
+szerkesztője: Tamás Bence Dávid <tamasbence98@gmail.com>.
 
-Currently, two official plugins are available:
+Alábbiakban olvasható a projekt futtatásához szükséges információk listája.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+A project-list nevezetű projekt a node 21.6.1-es verziójában íródott,
+ahogy az a ".nvmrc" file-ban is található, így célszerű ezt a verziót használni.
 
-## Expanding the ESLint configuration
+A jelenlegi legfrissebb Vite verzióval (v5.1.1) készült.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+A dokumentum letöltése után (zip / fork) installáljuk a node dependenciákat,
 
-- Configure the top-level `parserOptions` property like this:
+## npm install - paranccsal
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+Miután sikeresen települtek a szükséges package-k, az
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## npm run dev
+
+paranccsal indítható developer módban a projekt amit a http://localhost:5173/-as elérhetőségen lehet az indulást követően megtekinteni - vagy az
+
+## o + Enter
+
+paranccsal automatikusan megnyitja a default böngészőben a kész projektet.
+
+### Dependencies
+
+    .nvmrc -> node version
+
+### Commands
+
+`npm install` Install node dependencies
+`npm run dev` Start project in development mode
+
+### On run commands
+
+`o + Enter` open project in default browser or on the http://localhost:5173/ page
