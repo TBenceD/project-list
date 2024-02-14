@@ -24,14 +24,12 @@ export function Header() {
   return (
     <header
       className={`fixed left-0 top-0 z-40 w-full text-center transition-all duration-300 ${
-        state.isScrolled
-          ? "bg-transparent backdrop-blur-lg"
-          : " bg-gray-400 dark:bg-slate-900"
+        state.isScrolled ? "bg-transparent backdrop-blur-lg" : "bg-slate-900"
       } ${state.isTop ? "" : "bg-transparent backdrop-blur-lg"}`}
     >
       <section>
         <span
-          className={`mx-auto sm:text-lg text-base flex h-16 max-w-6xl items-center justify-center sm:h-24 dark:text-slate-400 ${
+          className={`mx-auto sm:text-lg text-base flex h-16 max-w-6xl items-center justify-center sm:h-24 text-slate-400 ${
             state.isScrolled ? "bg-opacity-75 backdrop-blur-lg" : ""
           }`}
         >

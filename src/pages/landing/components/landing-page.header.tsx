@@ -14,7 +14,7 @@ export function LandingPageHeader(props: LandingPageHeaderProps) {
 
   return (
     <div className="w-full">
-      <h1 className="text-base sm:text-xl font-bold text-gray-900 dark:text-slate-400">
+      <h1 className="text-base sm:text-xl font-bold text-slate-400">
         {t("landing-page-title")}
       </h1>
       <div className="grid gap-6 grid-cols-9 items-center mt-4">
@@ -32,10 +32,7 @@ export function LandingPageHeader(props: LandingPageHeaderProps) {
           <Button
             name={t("landing-page-create-new-project-button-name")}
             onClick={() => navigate("/new-project")}
-            onHover="dark:hover:bg-slate-700"
-            background="dark:bg-slate-600"
             type="button"
-            textColor="text-slate-400"
           />
         </div>
       </div>

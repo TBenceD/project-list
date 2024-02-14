@@ -1,8 +1,13 @@
 {
-  "name": "vite-project",
+  "name": "project-list",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
+  "author": {
+    "name": "Tamás Bence Dávid",
+    "email": "tamasbence98@gmail.com",
+    "url": "https://www.linkedin.com/in/bence-d%C3%A1vid-tam%C3%A1s-1104081bb/"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",

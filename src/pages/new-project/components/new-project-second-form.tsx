@@ -130,9 +130,6 @@ export function NewProjectSecondForm(props: NewProjectSecondFormProps) {
             type="button"
             name={t("add-button-title")}
             onClick={handleAddNewCoworker}
-            onHover="dark:hover:bg-slate-700"
-            background="dark:bg-slate-600"
-            textColor="text-slate-400"
           />
         </div>
       </div>
@@ -141,7 +138,7 @@ export function NewProjectSecondForm(props: NewProjectSecondFormProps) {
           {coWorkers?.map((coWorker) => (
             <span
               key={coWorker.id}
-              className="bg-slate-500 text-slate-400 shadow-md shadow-sky-800 rounded-lg p-1 mr-2 mb-2 cursor-pointer"
+              className="bg-slate-500 text-slate-400 shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] rounded-lg p-1 mr-2 mb-2 cursor-pointer"
               onClick={() => handleRemoveCoworker(coWorker.id)}
             >
               {`${coWorker.name} - ${coWorker.position}`} &times;

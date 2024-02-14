@@ -128,9 +128,6 @@ export function NewProjectThirdForm(props: NewProjectThirdFormProps) {
             type="button"
             name={t("add-button-title")}
             onClick={handleAddNewLink}
-            onHover="dark:hover:bg-slate-700"
-            background="dark:bg-slate-600"
-            textColor="text-slate-400"
           />
         </div>
       </div>
@@ -139,7 +136,7 @@ export function NewProjectThirdForm(props: NewProjectThirdFormProps) {
           {links?.map((link) => (
             <span
               key={link.id}
-              className="bg-slate-500 text-slate-400 shadow-md shadow-sky-800 rounded-lg p-1 mr-2 mb-2 cursor-pointer"
+              className="bg-slate-500 text-slate-400 shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] rounded-lg p-1 mr-2 mb-2 cursor-pointer"
               onClick={() => handleRemoveLink(link.id)}
             >
               {`${link.name} - ${link.url}`} &times;

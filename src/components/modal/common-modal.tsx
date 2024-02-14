@@ -12,7 +12,7 @@ export function Modal(props: ModalProps) {
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
-    // Clean-up: Re-enable scrolling when the component unmounts
+
     return () => {
       document.body.style.overflow = "auto";
     };
@@ -35,12 +35,12 @@ export function Modal(props: ModalProps) {
         <div
           className={`min-w-[500px] sm:max-h-screen sm:h-[600px] ${
             modalClose ? "animate-commonModalClose" : "animate-commonModalOpen"
-          } flex h-screen w-screen flex-col overflow-auto bg-white p-5 shadow-2xl sm:h-fit sm:w-fit sm:max-w-screen-md sm:rounded-3xl dark:bg-slate-700`}
+          } flex h-screen w-screen flex-col overflow-auto p-5 shadow-[0_4px_16px_-4px_rgba(59,113,202,0.5)] sm:h-fit sm:w-fit sm:max-w-screen-md sm:rounded-3xl bg-slate-700`}
         >
-          <div className="mb-8 flex justify-between text-base font-bold subpixel-antialiased sm:text-xl dark:text-slate-400 space-x-10">
+          <div className="mb-8 flex justify-between text-base font-bold subpixel-antialiased sm:text-xl text-slate-400 space-x-10">
             {title}
             <div
-              className="max-h-5 cursor-pointer text-black"
+              className="cursor-pointer text-black text-2xl"
               onClick={handleCloseButtonClicked}
             >
               &times;

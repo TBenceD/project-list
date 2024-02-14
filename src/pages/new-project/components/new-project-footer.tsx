@@ -17,32 +17,33 @@ export function NewProjectFooter(props: NewProjectFooterProps) {
         <Button
           name={t("new-project-page-previous-button-title")}
           onClick={() => handleManageStepper("previous")}
-          onHover="dark:hover:bg-slate-700"
-          background="dark:bg-slate-600"
           type="button"
-          textColor="text-slate-400"
           disabled={step === 1}
         />
       </div>
       <div className="flex flex-row space-x-4">
         <div
           className={`h-8 w-8 rounded-full flex ${
-            step === 1 ? "bg-slate-500" : "bg-slate-200"
-          }  justify-center items-center`}
+            step === 1 ? "bg-slate-500" : "bg-green-800"
+          }  justify-center items-center shadow-[0_4px_12px_-4px_rgba(59,113,202,0.5)]`}
         >
           1
         </div>
         <div
           className={`h-8 w-8 rounded-full flex ${
-            step === 2 ? "bg-slate-500" : "bg-slate-200"
-          }  justify-center items-center`}
+            step === 2
+              ? "bg-slate-500"
+              : step === 3
+              ? "bg-green-800"
+              : "bg-slate-200"
+          }  justify-center items-center shadow-[0_4px_12px_-4px_rgba(59,113,202,0.5)]`}
         >
           2
         </div>
         <div
           className={`h-8 w-8 rounded-full flex ${
             step === 3 ? "bg-slate-500" : "bg-slate-200"
-          }  justify-center items-center`}
+          }  justify-center items-center shadow-[0_4px_12px_-4px_rgba(59,113,202,0.5)]`}
         >
           3
         </div>
@@ -54,10 +55,7 @@ export function NewProjectFooter(props: NewProjectFooterProps) {
             : t("new-project-page-finish-button-title")
         }
         onClick={() => handleManageStepper("next")}
-        onHover="dark:hover:bg-slate-700"
-        background="dark:bg-slate-600"
         type={step < 3 ? "button" : "submit"}
-        textColor="text-slate-400"
         disabled={error}
       />
     </div>

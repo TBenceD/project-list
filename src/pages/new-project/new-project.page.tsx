@@ -5,6 +5,7 @@ import { Form } from "../../components/form";
 import {
   NewProjectFirstForm,
   NewProjectFooter,
+  NewProjectHeader,
   NewProjectSecondForm,
   NewProjectThirdForm,
 } from "./components";
@@ -58,7 +59,7 @@ export function NewProjectPage() {
     );
   };
 
-  const handleManageStepper = (mode: string) => {
+  const handleManageStepper = (mode: "next" | "previous") => {
     if (handleCheckInputs()) return;
 
     if (step === 3 && mode === "next") {
@@ -85,9 +86,7 @@ export function NewProjectPage() {
 
   return (
     <div className="space-y-4">
-      <h1 className="text-base sm:text-xl font-bold text-gray-900 dark:text-slate-400">
-        {t("new-project-page-title")}
-      </h1>
+      <NewProjectHeader />
       <div className="flex justify-center">
         <Form onSubmit={handleSave}>
           {step === 1 ? (

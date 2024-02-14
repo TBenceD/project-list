@@ -50,7 +50,7 @@ export function TextInput(props: InputProps) {
           className={`z-[2] w-full
           rounded-2xl p-2 pl-6 pr-4
           before:transition-all focus:outline-none focus:ring-2 focus:ring-sky-400/10
-          dark:bg-slate-600 dark:text-slate-400
+          bg-slate-600 text-slate-400
           ${error && error !== "" ? "border border-solid border-red-600" : ""}
           disabled:cursor-not-allowed disabled:bg-slate-200
         `}
